@@ -1,0 +1,320 @@
+{
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "attribution": "Workely, The Open Ledger, https://www.workely.ai/research/lead-ledger",
+  "generated": "2026-10-15",
+  "region": "Madison area",
+  "residential_only": true,
+  "suppression": {
+    "min_cell": 10,
+    "min_pct_cell": 20
+  },
+  "window_note": "Reliable window = 2026 Q2 and Q3 (leads created 2026-04-01 to 2026-09-30). Q4 2026 is partial and excluded. 2025 and 2026 Q1 are an HCP-import mirror with survivorship bias and are not published as trends.",
+  "tables": {
+    "t1_leads_by_channel_quarter": {
+      "verdict": "publishable with footnote: 2026 Q2-Q3 only; channel labels and phone capture expanded in Q3 so quarter-over-quarter growth is a capture change, not demand; suppressed cells are not recoverable because row n is the sum of published cells only",
+      "unit": "residential leads, count",
+      "rows": [
+        {
+          "quarter": "2026 Q2",
+          "n": 357,
+          "suppressed_cells": 1,
+          "cells": {
+            "phone": 125,
+            "website": 120,
+            "google_lsa": 89,
+            "email": 23,
+            "facebook": "suppressed",
+            "messaging": "suppressed",
+            "google_ads": "suppressed",
+            "other": "suppressed"
+          }
+        },
+        {
+          "quarter": "2026 Q3",
+          "n": 522,
+          "suppressed_cells": 1,
+          "cells": {
+            "phone": 273,
+            "website": 106,
+            "google_lsa": 49,
+            "facebook": 31,
+            "email": 24,
+            "messaging": 22,
+            "google_ads": 17,
+            "other": "suppressed"
+          }
+        },
+        {
+          "quarter": "2026 Q2-Q3 combined",
+          "n": 884,
+          "cells": {
+            "phone": 398,
+            "website": 226,
+            "google_lsa": 138,
+            "email": 47,
+            "facebook": 36,
+            "messaging": 22,
+            "google_ads": 17,
+            "other": "suppressed"
+          }
+        }
+      ]
+    },
+    "t2_lead_to_quote_rate_by_channel": {
+      "verdict": "publishable with footnote: website (and facebook as indicative) only; phone, google_lsa, email and messaging rates are withheld because quotes on those channels are often given verbally and never recorded, so a low rate measures record keeping, not performance",
+      "unit": "share of residential leads in 2026 Q2-Q3 with a recorded sent quote",
+      "rows": [
+        {
+          "channel": "website",
+          "n": 226,
+          "with_quote": 96,
+          "rate_pct": 42.5,
+          "ci95_low": 36.2,
+          "ci95_high": 49
+        },
+        {
+          "channel": "facebook",
+          "n": 36,
+          "with_quote": "suppressed",
+          "rate_pct": 19.4,
+          "ci95_low": 9.8,
+          "ci95_high": 35
+        },
+        {
+          "channel": "google_ads",
+          "n": 17,
+          "with_quote": "suppressed",
+          "rate_pct": "suppressed",
+          "ci95_low": "suppressed",
+          "ci95_high": "suppressed"
+        },
+        {
+          "channel": "phone",
+          "n": 398,
+          "rate_pct": "withheld: unrecorded quotes"
+        },
+        {
+          "channel": "google_lsa",
+          "n": 138,
+          "rate_pct": "withheld: unrecorded quotes"
+        },
+        {
+          "channel": "email",
+          "n": 47,
+          "rate_pct": "withheld: unrecorded quotes"
+        },
+        {
+          "channel": "messaging",
+          "n": 22,
+          "rate_pct": "withheld: unrecorded quotes"
+        }
+      ]
+    },
+    "t3_quote_outcomes": {
+      "verdict": "publishable with footnote: booked means a sent residential quote linked to a real (non-cancelled or paid) job within 120 days; no declines are recorded in the data so no price-reason figure exists; strict job link is conservative because cancelled job status is unreliable",
+      "unit": "closed residential sent quotes (all non-draft quotes minus those still open)",
+      "rows": [
+        {
+          "period": "2026 Q2",
+          "n_closed": 85,
+          "booked": 34,
+          "accepted_not_booked": 18,
+          "no_reply_or_expired": 33,
+          "booked_rate_pct": 40,
+          "ci95_low": 30.2,
+          "ci95_high": 50.6
+        },
+        {
+          "period": "2026 Q3",
+          "n_closed": 86,
+          "booked": 24,
+          "accepted_not_booked": 17,
+          "no_reply_or_expired": 45,
+          "booked_rate_pct": 27.9,
+          "ci95_low": 19.5,
+          "ci95_high": 38.2
+        },
+        {
+          "period": "2026 Q2-Q3 (reliable)",
+          "n_sent": 183,
+          "n_closed": 171,
+          "booked": 58,
+          "accepted_not_booked": 35,
+          "no_reply_or_expired": 78,
+          "booked_rate_pct": 33.9,
+          "ci95_low": 27.2,
+          "ci95_high": 41.3,
+          "no_reply_rate_pct": 45.6,
+          "no_reply_ci95_low": 38.3,
+          "no_reply_ci95_high": 53.1
+        },
+        {
+          "period": "all time (2025-01 to 2026-09)",
+          "n_sent": 318,
+          "n_closed": 306,
+          "booked": 111,
+          "accepted_not_booked": 36,
+          "no_reply_or_expired": 159,
+          "booked_rate_pct": 36.3,
+          "ci95_low": 31.1,
+          "ci95_high": 41.8,
+          "no_reply_rate_pct": 52,
+          "no_reply_ci95_low": 46.4,
+          "no_reply_ci95_high": 57.5
+        }
+      ]
+    },
+    "t5_price_bands_by_service": {
+      "verdict": "publishable with footnote: window cleaning, gutter cleaning, house wash and bundles only; amounts are job totals across 2025-26 with no inflation adjustment and 2025 amounts come from an HCP mirror; snow removal and unspecified are withheld",
+      "unit": "residential job total, USD, rounded to $5",
+      "rows": [
+        {
+          "service": "all residential jobs with an amount",
+          "n": 433,
+          "p25": 245,
+          "median": 370,
+          "p75": 640
+        },
+        {
+          "service": "bundle (multiple services)",
+          "n": 194,
+          "p25": 260,
+          "median": 400,
+          "p75": 650
+        },
+        {
+          "service": "window cleaning",
+          "n": 62,
+          "p25": 250,
+          "median": 300,
+          "p75": 500
+        },
+        {
+          "service": "house wash",
+          "n": 24,
+          "p25": 315,
+          "median": 405,
+          "p75": 670
+        },
+        {
+          "service": "gutter cleaning",
+          "n": 23,
+          "p25": 190,
+          "median": 220,
+          "p75": 250
+        },
+        {
+          "service": "deck / fence, roof wash, driveway / concrete, pressure washing (general)",
+          "n": "suppressed",
+          "p25": "suppressed",
+          "median": "suppressed",
+          "p75": "suppressed"
+        }
+      ]
+    },
+    "t6_booked_rate_by_quote_total_band": {
+      "verdict": "publishable with footnote: all-time; confidence intervals overlap in every band, so this shows no clear price effect on booking",
+      "unit": "closed residential sent quotes, all time; quote total banded in USD",
+      "rows": [
+        {
+          "band": "$0-250",
+          "n_closed": 23,
+          "booked_rate_pct": 47.8,
+          "ci95_low": 29.2,
+          "ci95_high": 67
+        },
+        {
+          "band": "$250-500",
+          "n_closed": 92,
+          "booked_rate_pct": 40.2,
+          "ci95_low": 30.8,
+          "ci95_high": 50.4
+        },
+        {
+          "band": "$500-750",
+          "n_closed": 80,
+          "booked_rate_pct": 36.3,
+          "ci95_low": 26.6,
+          "ci95_high": 47.2
+        },
+        {
+          "band": "$750-1000",
+          "n_closed": 35,
+          "booked_rate_pct": 40,
+          "ci95_low": 25.6,
+          "ci95_high": 56.4
+        },
+        {
+          "band": "$1000-1500",
+          "n_closed": 23,
+          "booked_rate_pct": 21.7,
+          "ci95_low": 9.7,
+          "ci95_high": 41.9
+        },
+        {
+          "band": "$1500+",
+          "n_closed": 21,
+          "booked_rate_pct": 33.3,
+          "ci95_low": 17.2,
+          "ci95_high": 54.6
+        }
+      ]
+    },
+    "t9_median_ticket_by_quarter": {
+      "verdict": "publishable with footnote: 2025 amounts come from an HCP mirror and 2025 Q1 and 2026 Q1 look unreliable; lead with 2026 Q2 and Q3",
+      "unit": "residential job total, USD, rounded to $5",
+      "rows": [
+        {
+          "quarter": "2025 Q1",
+          "n": 53,
+          "median": 150,
+          "p25": 80,
+          "p75": 255
+        },
+        {
+          "quarter": "2025 Q2",
+          "n": 76,
+          "median": 360,
+          "p25": 300,
+          "p75": 505
+        },
+        {
+          "quarter": "2025 Q3",
+          "n": 69,
+          "median": 440,
+          "p25": 315,
+          "p75": 650
+        },
+        {
+          "quarter": "2025 Q4",
+          "n": 55,
+          "median": 315,
+          "p25": 195,
+          "p75": 635
+        },
+        {
+          "quarter": "2026 Q1",
+          "n": 13,
+          "median": 400,
+          "p25": 250,
+          "p75": 1120
+        },
+        {
+          "quarter": "2026 Q2",
+          "n": 60,
+          "median": 605,
+          "p25": 355,
+          "p75": 860
+        },
+        {
+          "quarter": "2026 Q3",
+          "n": 39,
+          "median": 490,
+          "p25": 285,
+          "p75": 660
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+service,n,p25,median,p75
+all residential jobs with an amount,433,245,370,640
+bundle (multiple services),194,260,400,650
+window cleaning,62,250,300,500
+house wash,24,315,405,670
+gutter cleaning,23,190,220,250
+"deck / fence, roof wash, driveway / concrete, pressure washing (general)",suppressed,suppressed,suppressed,suppressed

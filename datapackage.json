@@ -1,0 +1,409 @@
+{
+  "profile": "data-package",
+  "name": "workely-open-data",
+  "title": "Workely open data: Price Index and Open Ledger",
+  "description": "Two separate series, never blended. (1) Workely Price Index: advertised prices from businesses' own public pages, cells published at 30 or more distinct businesses. (2) TWC Open Ledger: binned residential numbers from The Total Wash Co. in Madison, WI.",
+  "version": "0.1.0",
+  "created": "2026-10-15",
+  "homepage": "https://www.workely.ai/index",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0"
+    }
+  ],
+  "resources": [
+    {
+      "name": "price-index-cells",
+      "path": "data/price-index/cells.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "Workely Price Index: published cells",
+      "description": "Advertised prices read from businesses' own public price pages. One row per cell and unit with at least 30 distinct businesses. Aggregates only; no business is named or identifiable.",
+      "licenses": [
+        {
+          "name": "CC-BY-4.0",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "Creative Commons Attribution 4.0"
+        }
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "cell",
+            "type": "string",
+            "description": "Cell id: country, trade."
+          },
+          {
+            "name": "trade",
+            "type": "string",
+            "description": "Trade."
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code."
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "description": "ISO 4217 currency of the prices."
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "What the price is for, for example per_clean, per_house_wash, per_driveway."
+          },
+          {
+            "name": "n_businesses",
+            "type": "integer",
+            "description": "Distinct businesses behind the row. Never below 30.",
+            "constraints": {
+              "required": true,
+              "minimum": 30
+            }
+          },
+          {
+            "name": "p25",
+            "type": "number",
+            "description": "25th percentile advertised price, in the currency column."
+          },
+          {
+            "name": "median",
+            "type": "number",
+            "description": "Median advertised price."
+          },
+          {
+            "name": "p75",
+            "type": "number",
+            "description": "75th percentile advertised price."
+          },
+          {
+            "name": "share_from_price",
+            "type": "number",
+            "description": "Share of businesses whose price is a starting \"from\" price, 0 to 1.",
+            "constraints": {
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "name": "captured_from",
+            "type": "string",
+            "description": "First month of capture, YYYY-MM."
+          },
+          {
+            "name": "captured_to",
+            "type": "string",
+            "description": "Last month of capture, YYYY-MM."
+          },
+          {
+            "name": "captured_label",
+            "type": "string",
+            "description": "Capture period in words."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ledger-t1-leads-by-channel-quarter",
+      "path": "data/ledger/t1_leads_by_channel_quarter.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "TWC Open Ledger: leads by channel quarter",
+      "description": "Residential numbers from The Total Wash Co., Madison, WI. Equals the matching table in data/ledger/data.json, which is a copy of https://www.workely.ai/research/lead-ledger/data.json.",
+      "licenses": [
+        {
+          "name": "CC-BY-4.0",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "Creative Commons Attribution 4.0"
+        }
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "quarter",
+            "type": "string",
+            "description": "Quarter or combined window."
+          },
+          {
+            "name": "row_n",
+            "type": "integer",
+            "description": "Row total: the sum of the published cells only, so hidden cells cannot be recovered by subtraction."
+          },
+          {
+            "name": "channel",
+            "type": "string",
+            "description": "Lead channel."
+          },
+          {
+            "name": "leads",
+            "type": "any",
+            "description": "Residential leads, count, or the word \"suppressed\" when the cell is under 10."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ledger-t2-lead-to-quote-rate-by-channel",
+      "path": "data/ledger/t2_lead_to_quote_rate_by_channel.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "TWC Open Ledger: lead to quote rate by channel",
+      "description": "Residential numbers from The Total Wash Co., Madison, WI. Equals the matching table in data/ledger/data.json, which is a copy of https://www.workely.ai/research/lead-ledger/data.json.",
+      "licenses": [
+        {
+          "name": "CC-BY-4.0",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "Creative Commons Attribution 4.0"
+        }
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "channel",
+            "type": "string",
+            "description": "Lead channel."
+          },
+          {
+            "name": "n",
+            "type": "integer",
+            "description": "Residential leads in 2026 Q2-Q3."
+          },
+          {
+            "name": "with_quote",
+            "type": "any",
+            "description": "Leads with a recorded sent quote, or \"suppressed\"."
+          },
+          {
+            "name": "rate_pct",
+            "type": "any",
+            "description": "Percent with a recorded quote, \"suppressed\", or a \"withheld: ...\" note."
+          },
+          {
+            "name": "ci95_low",
+            "type": "any",
+            "description": "95 percent interval, low."
+          },
+          {
+            "name": "ci95_high",
+            "type": "any",
+            "description": "95 percent interval, high."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ledger-t3-quote-outcomes",
+      "path": "data/ledger/t3_quote_outcomes.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "TWC Open Ledger: quote outcomes",
+      "description": "Residential numbers from The Total Wash Co., Madison, WI. Equals the matching table in data/ledger/data.json, which is a copy of https://www.workely.ai/research/lead-ledger/data.json.",
+      "licenses": [
+        {
+          "name": "CC-BY-4.0",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "Creative Commons Attribution 4.0"
+        }
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "period",
+            "type": "string",
+            "description": "Period label."
+          },
+          {
+            "name": "n_closed",
+            "type": "integer",
+            "description": "Closed residential sent quotes."
+          },
+          {
+            "name": "booked",
+            "type": "integer",
+            "description": "Quotes linked to a real job within 120 days."
+          },
+          {
+            "name": "accepted_not_booked",
+            "type": "integer",
+            "description": "Accepted but not booked."
+          },
+          {
+            "name": "no_reply_or_expired",
+            "type": "integer",
+            "description": "No reply or expired."
+          },
+          {
+            "name": "booked_rate_pct",
+            "type": "number",
+            "description": "Booked share of closed quotes, percent."
+          },
+          {
+            "name": "ci95_low",
+            "type": "number",
+            "description": "95 percent interval, low."
+          },
+          {
+            "name": "ci95_high",
+            "type": "number",
+            "description": "95 percent interval, high."
+          },
+          {
+            "name": "n_sent",
+            "type": "integer",
+            "description": "All sent quotes, where published."
+          },
+          {
+            "name": "no_reply_rate_pct",
+            "type": "number",
+            "description": "No-reply share, percent, where published."
+          },
+          {
+            "name": "no_reply_ci95_low",
+            "type": "number",
+            "description": "Interval low, where published."
+          },
+          {
+            "name": "no_reply_ci95_high",
+            "type": "number",
+            "description": "Interval high, where published."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ledger-t5-price-bands-by-service",
+      "path": "data/ledger/t5_price_bands_by_service.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "TWC Open Ledger: price bands by service",
+      "description": "Residential numbers from The Total Wash Co., Madison, WI. Equals the matching table in data/ledger/data.json, which is a copy of https://www.workely.ai/research/lead-ledger/data.json.",
+      "licenses": [
+        {
+          "name": "CC-BY-4.0",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "Creative Commons Attribution 4.0"
+        }
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "service",
+            "type": "string",
+            "description": "Residential service group."
+          },
+          {
+            "name": "n",
+            "type": "any",
+            "description": "Jobs, or \"suppressed\"."
+          },
+          {
+            "name": "p25",
+            "type": "any",
+            "description": "25th percentile job total, USD, rounded to $5, or \"suppressed\"."
+          },
+          {
+            "name": "median",
+            "type": "any",
+            "description": "Median job total, USD, rounded to $5, or \"suppressed\"."
+          },
+          {
+            "name": "p75",
+            "type": "any",
+            "description": "75th percentile job total, USD, rounded to $5, or \"suppressed\"."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ledger-t6-booked-rate-by-quote-total-band",
+      "path": "data/ledger/t6_booked_rate_by_quote_total_band.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "TWC Open Ledger: booked rate by quote total band",
+      "description": "Residential numbers from The Total Wash Co., Madison, WI. Equals the matching table in data/ledger/data.json, which is a copy of https://www.workely.ai/research/lead-ledger/data.json.",
+      "licenses": [
+        {
+          "name": "CC-BY-4.0",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "Creative Commons Attribution 4.0"
+        }
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "band",
+            "type": "string",
+            "description": "Quote total band, USD."
+          },
+          {
+            "name": "n_closed",
+            "type": "integer",
+            "description": "Closed residential sent quotes, all time."
+          },
+          {
+            "name": "booked_rate_pct",
+            "type": "number",
+            "description": "Booked share, percent."
+          },
+          {
+            "name": "ci95_low",
+            "type": "number",
+            "description": "95 percent interval, low."
+          },
+          {
+            "name": "ci95_high",
+            "type": "number",
+            "description": "95 percent interval, high."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ledger-t9-median-ticket-by-quarter",
+      "path": "data/ledger/t9_median_ticket_by_quarter.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "TWC Open Ledger: median ticket by quarter",
+      "description": "Residential numbers from The Total Wash Co., Madison, WI. Equals the matching table in data/ledger/data.json, which is a copy of https://www.workely.ai/research/lead-ledger/data.json.",
+      "licenses": [
+        {
+          "name": "CC-BY-4.0",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "Creative Commons Attribution 4.0"
+        }
+      ],
+      "schema": {
+        "fields": [
+          {
+            "name": "quarter",
+            "type": "string",
+            "description": "Quarter."
+          },
+          {
+            "name": "n",
+            "type": "integer",
+            "description": "Jobs with an amount."
+          },
+          {
+            "name": "median",
+            "type": "number",
+            "description": "Median job total, USD, rounded to $5."
+          },
+          {
+            "name": "p25",
+            "type": "number",
+            "description": "25th percentile, USD."
+          },
+          {
+            "name": "p75",
+            "type": "number",
+            "description": "75th percentile, USD."
+          }
+        ]
+      }
+    }
+  ]
+}

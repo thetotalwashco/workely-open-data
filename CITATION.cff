@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this data, please cite it as below."
+title: "Workely open data: Price Index and Open Ledger"
+type: dataset
+version: 0.1.0
+date-released: 2026-10-15
+license: CC-BY-4.0
+url: "https://www.workely.ai/index"
+authors:
+  - name: "Workely"
+abstract: "Advertised prices for home-service trades read from businesses' own public price pages (the Workely Price Index), and binned residential numbers from The Total Wash Co. in Madison, WI (the Open Ledger), plus a JSON Schema for owner pricing rules. The two series are kept separate."
+keywords:
+  - pricing
+  - pressure washing
+  - window cleaning
+  - home services
+  - open data

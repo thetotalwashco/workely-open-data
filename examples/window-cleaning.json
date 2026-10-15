@@ -1,0 +1,11 @@
+{
+  "$schema": "../schema/pricing-rule.schema.json",
+  "description": "EXAMPLE with illustrative numbers only. Not a recommended price and not drawn from any business.",
+  "service": { "name": "Window Cleaning (example)", "slug": "window-cleaning", "price_unit": "per_panel", "price": 6, "taxable": true },
+  "rules": [
+    { "name": "Rate per window panel (example)", "effect": "per_unit", "input_key": "panels", "amount_cents": 600, "priority": 10 },
+    { "name": "Inside and outside (example)", "effect": "multiplier", "input_key": "interior_included", "condition": { "equals": true }, "factor": 1.5, "priority": 20 },
+    { "name": "Screens and tracks (example)", "effect": "flat_add", "input_key": "screens_and_tracks", "condition": { "equals": true }, "amount_cents": 2500, "priority": 30 },
+    { "name": "Job minimum (example)", "effect": "set_minimum", "amount_cents": 15000, "priority": 90 }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "workely-open-data",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Workely open data: Price Index, Open Ledger and the pricing-rule schema.",
+  "license": "MIT",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build:ledger": "node scripts/build-ledger-csv.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}

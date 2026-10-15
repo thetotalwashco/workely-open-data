@@ -1,0 +1,5 @@
+period,n_closed,booked,accepted_not_booked,no_reply_or_expired,booked_rate_pct,ci95_low,ci95_high,n_sent,no_reply_rate_pct,no_reply_ci95_low,no_reply_ci95_high
+2026 Q2,85,34,18,33,40,30.2,50.6,,,,
+2026 Q3,86,24,17,45,27.9,19.5,38.2,,,,
+2026 Q2-Q3 (reliable),171,58,35,78,33.9,27.2,41.3,183,45.6,38.3,53.1
+all time (2025-01 to 2026-09),306,111,36,159,36.3,31.1,41.8,318,52,46.4,57.5

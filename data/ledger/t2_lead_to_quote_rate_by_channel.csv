@@ -1,0 +1,8 @@
+channel,n,with_quote,rate_pct,ci95_low,ci95_high
+website,226,96,42.5,36.2,49
+facebook,36,suppressed,19.4,9.8,35
+google_ads,17,suppressed,suppressed,suppressed,suppressed
+phone,398,,withheld: unrecorded quotes,,
+google_lsa,138,,withheld: unrecorded quotes,,
+email,47,,withheld: unrecorded quotes,,
+messaging,22,,withheld: unrecorded quotes,,

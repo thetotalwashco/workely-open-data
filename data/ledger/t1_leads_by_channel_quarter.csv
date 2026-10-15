@@ -1,0 +1,25 @@
+quarter,row_n,channel,leads
+2026 Q2,357,phone,125
+2026 Q2,357,website,120
+2026 Q2,357,google_lsa,89
+2026 Q2,357,email,23
+2026 Q2,357,facebook,suppressed
+2026 Q2,357,messaging,suppressed
+2026 Q2,357,google_ads,suppressed
+2026 Q2,357,other,suppressed
+2026 Q3,522,phone,273
+2026 Q3,522,website,106
+2026 Q3,522,google_lsa,49
+2026 Q3,522,facebook,31
+2026 Q3,522,email,24
+2026 Q3,522,messaging,22
+2026 Q3,522,google_ads,17
+2026 Q3,522,other,suppressed
+2026 Q2-Q3 combined,884,phone,398
+2026 Q2-Q3 combined,884,website,226
+2026 Q2-Q3 combined,884,google_lsa,138
+2026 Q2-Q3 combined,884,email,47
+2026 Q2-Q3 combined,884,facebook,36
+2026 Q2-Q3 combined,884,messaging,22
+2026 Q2-Q3 combined,884,google_ads,17
+2026 Q2-Q3 combined,884,other,suppressed

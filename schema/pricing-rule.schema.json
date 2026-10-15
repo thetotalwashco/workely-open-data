@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.workely.ai/schema/pricing-rule.schema.json",
+  "title": "Workely owner pricing setup",
+  "description": "One service an owner sells, plus the pricing rules that build its price. Mirrors the types of Workely's deterministic quote calculator: a base price, then rules applied in priority order, then a job minimum, then times quantity. All money in rules is integer cents.",
+  "type": "object",
+  "required": ["service", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "description": { "type": "string", "description": "Free text for humans. Not read by the calculator." },
+    "service": { "$ref": "#/$defs/service" },
+    "rules": {
+      "type": "array",
+      "description": "Rules for this service. Applied lowest priority number first.",
+      "items": { "$ref": "#/$defs/rule" }
+    },
+    "tax_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Sales tax as a fraction, for example 0.05 for 5 percent. Applied to taxable lines only."
+    }
+  },
+  "$defs": {
+    "service": {
+      "type": "object",
+      "required": ["name", "price_unit"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "price_unit": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "description": "How the service is priced. 'flat' means the base price is the price. Any other unit (for example per_sqft, per_panel) starts the base at 0 and lets a per_unit rule build the price. Known values in Workely: flat, per_sqft, per_panel."
+        },
+        "price": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Display price in dollars. For 'flat' this is the base price; for per-unit services it is the rate shown to the owner and the real rate lives in a per_unit rule."
+        },
+        "taxable": { "type": "boolean", "default": true, "description": "Only an explicit false exempts the line from sales tax." },
+        "min_cents": { "type": "integer", "minimum": 0, "description": "Job minimum in cents, stored in the service settings by the setup flow." }
+      }
+    },
+    "condition": {
+      "description": "Optional gate. The rule applies only when the condition matches the extracted input named by input_key. An empty object or null always matches.",
+      "oneOf": [
+        { "type": "null" },
+        { "type": "object", "maxProperties": 0 },
+        {
+          "type": "object",
+          "required": ["op", "value"],
+          "additionalProperties": false,
+          "properties": {
+            "op": { "enum": ["gte", "gt", "lte", "lt", "eq"] },
+            "value": { "type": "number" }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["equals"],
+          "additionalProperties": false,
+          "properties": { "equals": { "type": ["string", "number", "boolean"] } }
+        }
+      ]
+    },
+    "rule": {
+      "type": "object",
+      "required": ["name", "effect", "priority"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "effect": {
+          "enum": ["multiplier", "flat_add", "per_unit", "override", "set_minimum"],
+          "description": "multiplier: price x factor. flat_add: price + amount_cents. per_unit: price + amount_cents x (the input named by input_key). override: price becomes amount_cents. set_minimum: the job floor becomes amount_cents."
+        },
+        "applies_to": {
+          "enum": ["this_service", "all_services"],
+          "default": "this_service",
+          "description": "In Workely's database a rule with no service_id applies to every service."
+        },
+        "input_key": {
+          "type": ["string", "null"],
+          "description": "The extracted input the rule reads, for example sqft, stories, panels."
+        },
+        "condition": { "$ref": "#/$defs/condition" },
+        "factor": { "type": ["number", "null"], "minimum": 0, "description": "For effect = multiplier." },
+        "amount_cents": { "type": ["integer", "null"], "description": "Integer cents, for effect = flat_add, per_unit, override or set_minimum." },
+        "priority": { "type": "integer", "default": 100, "description": "Lower runs first." }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "effect": { "const": "multiplier" } }, "required": ["effect"] },
+          "then": { "required": ["factor"], "properties": { "factor": { "type": "number" } } }
+        },
+        {
+          "if": { "properties": { "effect": { "enum": ["flat_add", "per_unit", "override", "set_minimum"] } }, "required": ["effect"] },
+          "then": { "required": ["amount_cents"], "properties": { "amount_cents": { "type": "integer" } } }
+        },
+        {
+          "if": { "properties": { "effect": { "const": "per_unit" } }, "required": ["effect"] },
+          "then": { "required": ["input_key"], "properties": { "input_key": { "type": "string", "minLength": 1 } } }
+        }
+      ]
+    }
+  }
+}

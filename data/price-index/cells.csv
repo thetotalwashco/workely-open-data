@@ -1,0 +1,4 @@
+cell,trade,country,currency,unit,n_businesses,p25,median,p75,share_from_price,captured_from,captured_to,captured_label
+gb-window-cleaning,window-cleaning,GB,GBP,per_clean,45,17,20,26,0.47,2026-10,2026-10,October 2026
+us-pressure-washing,pressure-washing,US,USD,per_house_wash,44,300,360,455,0.48,2026-10,2026-10,October 2026
+us-pressure-washing,pressure-washing,US,USD,per_driveway,43,160,225,250,0.47,2026-10,2026-10,October 2026

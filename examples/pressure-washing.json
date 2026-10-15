@@ -1,0 +1,11 @@
+{
+  "$schema": "../schema/pricing-rule.schema.json",
+  "description": "EXAMPLE with illustrative numbers only. Not a recommended price and not drawn from any business.",
+  "service": { "name": "House Washing (example)", "slug": "house-washing", "price_unit": "per_sqft", "price": 0.15, "taxable": true },
+  "rules": [
+    { "name": "Rate per square foot (example)", "effect": "per_unit", "input_key": "sqft", "amount_cents": 15, "priority": 10 },
+    { "name": "Three or more stories (example)", "effect": "multiplier", "input_key": "stories", "condition": { "op": "gte", "value": 3 }, "factor": 1.25, "priority": 20 },
+    { "name": "Job minimum (example)", "effect": "set_minimum", "amount_cents": 30000, "priority": 90 }
+  ],
+  "tax_rate": 0
+}
